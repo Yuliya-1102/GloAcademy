@@ -16,3 +16,32 @@ console.log(`Цель заработать ${mission} рублей/доллар�
 console.log(addExpenses.toLowerCase().split(', '));
 let budgetDay = money / 30;
 console.log('budgetDay:', budgetDay);
+
+money = +prompt('Ваш месячный доход?');
+addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 
+'Квартплата, проездной, кредит');
+deposit = confirm('Есть ли у вас депозит в банке?');
+
+let expenses1 = prompt('Введите обязательную статью расходов?');
+let expenses2 = prompt('Введите обязательную статью расходов?');
+let amount1 = +prompt('Во сколько это обойдется?');
+let amount2 = +prompt('Во сколько это обойдется?');
+
+let budgetMonth = money - amount1 - amount2;
+console.log('Бюджет на месяц: ', budgetMonth);
+period = mission / budgetMonth; 
+console.log('Цель будет достигнута за: ' + Math.ceil(period)  + ' месяцев');
+
+budgetDay = budgetMonth / 30;
+console.log('бюджет на день: ' + Math.floor(budgetDay));
+
+if (budgetDay > 1200) {
+    console.log('У вас высокий уровень дохода');
+} else if (600 < budgetDay && budgetDay < 1200){
+    console.log('У вас средний уровень дохода');
+} else if (0 < budgetDay && budgetDay < 600){
+    console.log('У вас ниже среднего уровеня дохода');
+} else {
+    console.log('Что то пошло не так');
+}
+    
