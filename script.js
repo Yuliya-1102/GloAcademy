@@ -5,21 +5,20 @@ let isNumber = function(n){
 };
 
 let money;
-let income = 'freelance'; 
-let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 
-'Квартплата, проездной, кредит');
-let deposit = confirm('Есть ли у вас депозит в банке?'); 
-let mission = 150000; 
+let income = 'freelance';
 
 let start = function() {
-    
     do {
         money = prompt('Ваш месячный доход?');
     }
     while(!isNumber(money)); // пока money === false, действие будет продолжаться
 };
-
 start();
+
+let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 
+'Квартплата, проездной, кредит');
+let deposit = confirm('Есть ли у вас депозит в банке?'); 
+let mission = 150000; 
 
 function showTypeOf(data){
     console.log(data, typeof(data));
