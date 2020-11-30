@@ -9,6 +9,30 @@
 
     <script src="script.js" defer async></script>
     
-    
+    <!-- <script>
+        let appData = {
+            addExpenses: []
+        }
+        function getInf(){
+            
+            let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 
+            'Квартплата, проездной, кредит');
+            appData.addExpenses = addExpenses.split(',');
+            console.log(appData.addExpenses);
+            appData.addExpenses = appData.addExpenses.map((item, Array) => {
+                return item.trim();
+            })
+            console.log(appData.addExpenses);
+
+            
+            // appData.addExpenses = appData.addExpenses.map((item) => {
+            //     return item.slice(0, 1).toLocaleUpperCase() + item.slice(1).toLowerCase();
+            // });
+
+            // console.log(appData.addExpenses);
+
+        }
+        getInf();  -->
+    </script>
 </body>
 </html>
