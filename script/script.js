@@ -17,6 +17,7 @@ const incomeTitle =  document.querySelectorAll('.income-title')[1];
 let incomeItems = document.querySelectorAll('.income-items');
 const expensesTitle =  document.querySelectorAll('.expenses-title');
 let expensesItems = document.querySelectorAll('.expenses-items'); 
+console.log(expensesItems);
 const additionalExpensesItem =  document.querySelector('.additional_expenses-item');
 const depositAmount =  document.querySelector('.deposit-amount');
 const depositPercent =  document.querySelector('.deposit-percent');
@@ -28,8 +29,11 @@ const expensesAmount = document.querySelector('.expenses-amount');
 const cancel = document.querySelector('#cancel');
 const inputText = document.querySelectorAll('input[type=text]');
 let income = document.querySelector('.income');
+console.log('income: ', income);
 let expenses = document.querySelector('.expenses');
+let incomeInput = income.querySelectorAll('.income-items');
 
+        
 let isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n); // проверка на числовое значение, true - если значение число;
 };
@@ -48,6 +52,44 @@ let appData = {
     budgetDay: 0,
     budgetMonth: 0,
     expensesMonth: 0,
+
+    resetForm: function(){
+        appData.income = {};
+        appData.incomeMonth = 0;
+        appData.addIncome = [];
+        appData.expenses = {};
+        appData.addExpenses = [];
+        appData.deposit = false;
+        appData.percentDeposit = 0;
+        appData.moneyDeposit = 0;
+        appData.budget = 0;
+        appData.budgetDay = 0;
+        appData.budgetMonth = 0;
+        appData.expensesMonth = 0;
+        periodSelect.value = 1;
+        periodAmount.textContent = 1;
+
+        inputText.forEach(function(item){
+                item.value = '';
+        });
+           
+      
+        if(incomeItems.length > 1){
+            for(let i=1; i < incomeItems.length; i++){
+                incomeItems[i].parentNode.removeChild(incomeItems[i]);
+                incomeAdd.style.display = 'block';
+            }
+        }
+        if(expensesItems.length > 1){
+            for(let i=1; i < expensesItems.length; i++){
+                expensesItems[i].parentNode.removeChild(expensesItems[i]);
+                expensesAdd.style.display = 'block';
+            }
+        }
+        
+
+        unblock();
+    },
 
     start: function() {
         //пересчет период сразу
@@ -123,6 +165,7 @@ let appData = {
         }
     },
     getAddExpenses: function(){
+        appData.addExpenses = [];
          let addExpenses = additionalExpensesItem.value.split(','); // разбиваем на массив
         addExpenses.forEach(function(item){
             item = item.trim();
@@ -132,6 +175,7 @@ let appData = {
         });
     },
     getAddIncome: function(){
+        appData.addIncome = [];
          additionalIncomeItem.forEach(function(item){
             let itemValue = item.value.trim();
             if(itemValue !== ''){
@@ -183,22 +227,7 @@ let appData = {
         periodAmount.textContent = periodSelect.value;
         return periodAmount.textContent;
     },
-    resetForm: function(){
-        inputText.forEach(function(item, i){
-            if(i <= 10) {
-                item.value = '';
-            }
-        });
-        let incomeInput = income.querySelectorAll('input[type=text]');
-        incomeInput.forEach(function(item){
-            item.value = '';
-        });
-        let expensesInput = expenses.querySelectorAll('input[type=text]');
-        expensesInput.forEach(function(item){
-            item.value = '';
-        });
-        unblock();
-    }
+    
 };
 
 // блокировка формы
@@ -279,6 +308,5 @@ document.addEventListener('input', function(){
 
 
 
-let expensesAmout = appData.expensesMonth;
 
  
