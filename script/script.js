@@ -296,7 +296,7 @@ AppData.prototype.eventListeners = function(){
         }
     }
     salaryAmount.addEventListener('input', trackStart);
-    cancel.addEventListener('click', _this.resetForm);
+    cancel.addEventListener('click', _this.resetForm.bind(_this));
 
     
     document.addEventListener('input', function(){
