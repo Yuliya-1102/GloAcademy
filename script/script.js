@@ -269,7 +269,7 @@ class AppData {
             depositBank.style.display = 'inline-block';
             depositAmount.style.display = 'inline-block';
             this.deposit = true;
-            depositBank.addEventListener('input', this.changePercent);
+            depositBank.addEventListener('change', this.changePercent);
         } else{
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none';
@@ -278,7 +278,7 @@ class AppData {
             depositAmount.value = '';
             depositPercent.value = '';
             this.deposit = false;
-            depositBank.removeEventListener('input', this.changePercent);
+            depositBank.removeEventListener('change', this.changePercent);
         }
     }
     eventListeners() {
