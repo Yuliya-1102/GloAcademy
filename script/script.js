@@ -241,11 +241,13 @@ class AppData {
     changePercent() {
         const valueSelect = this.value; // this указывает на depositBank, т.е. на перечень всех банков
         if(valueSelect === 'other'){
+            // depositPercent.value = '';
             depositPercent.disabled = false;
             depositPercent.style.display = 'inline-block';
             depositPercent.addEventListener('input', () => {
-                if(+depositPercent.value > 100){
+                if(+depositPercent.value > 100 || +depositPercent.value <= 0){
                     alert('Введите корректное значение в поле проценты');
+                    depositPercent.value = '';
                 }
             });
             depositPercent.value = '';
@@ -267,7 +269,7 @@ class AppData {
             depositBank.style.display = 'inline-block';
             depositAmount.style.display = 'inline-block';
             this.deposit = true;
-            depositBank.addEventListener('change', this.changePercent);
+            depositBank.addEventListener('input', this.changePercent);
         } else{
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none';
@@ -276,7 +278,7 @@ class AppData {
             depositAmount.value = '';
             depositPercent.value = '';
             this.deposit = false;
-            depositBank.removeEventListener('change', this.changePercent);
+            depositBank.removeEventListener('input', this.changePercent);
         }
     }
     eventListeners() {
